@@ -6,7 +6,8 @@ import styles from "./Qotd.module.css";
 export const Qotd = () => {
   const SPACE_ID = import.meta.env.VITE_SPACE_ID;
   const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
-
+  console.log("Space ID:", SPACE_ID);
+  console.log("Access Token:", ACCESS_TOKEN);
   // save quotes from contentful cms
   const [quotes, setQuotes] = useState([]);
   // save quote currently displayed
