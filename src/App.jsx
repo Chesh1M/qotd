@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./App.module.css";
-import { Qotd } from "./components/QOTD/Qotd";
+import { Qotd } from "./components/Qotd/Qotd";
 
 export const App = () => {
   return (
