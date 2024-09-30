@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Qotd.module.css";
 
+const refreshTime = 15 * 1000;
+
 export const Qotd = () => {
   const SPACE_ID = import.meta.env.VITE_SPACE_ID;
   const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
-  const refreshTime = 15 * 1000;
 
   // save quotes from contentful cms
   const [quotes, setQuotes] = useState([]);
