@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Qotd.module.css";
+import { getImageUrl } from "../../utils";
 
 const refreshTime = 15 * 1000;
 
@@ -99,7 +100,7 @@ export const Qotd = () => {
       )}
       <img
         className={styles.quoteImage}
-        src="../../assets/thus-spoke-zarathustra.jpg"
+        src={getImageUrl("thus-spoke-zarathustra.jpg")}
         alt="Thus Spoke Zarathustra"
       />
     </section>
