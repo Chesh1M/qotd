@@ -1,0 +1,16 @@
+:root {
+  /* Light mode Colours */
+  --lm-color-text: #000;
+  --lm-color-bg: #fff;
+  --lm-color-primary: #5476fc;
+  --lm-color-secondary: #1a55c3;
+
+  /* Dark mode Colours */
+  --dm-color-text: #fff;
+  --dm-color-bg: #04152d;
+  --dm-color-primary: #576cbc;
+  --dm-color-secondary: #19376d;
+
+  /* Fonts */
+  --font-roboto: "Montserrat";
+}

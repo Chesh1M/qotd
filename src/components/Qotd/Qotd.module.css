@@ -1,0 +1,5 @@
+@import "../../vars.css";
+
+.test {
+  background-color: var(--lm-color-bg);
+}
