@@ -1,5 +1,45 @@
 @import "../../vars.css";
 
-.test {
-  background-color: var(--lm-color-bg);
+.qotdSection {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: var(--dm-color-bg);
+  color: var(--dm-color-text);
+  padding: 50px 100px;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quoteText {
+  margin-bottom: 10px;
+}
+
+.quoteAuthor {
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+.quoteImage {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  .qotdSection {
+    padding: 50px 30px;
+  }
+  .title {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .qotdSection {
+    padding: 30px 20px;
+  }
 }

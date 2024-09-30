@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Qotd.module.css";
-//import quotes from "./quotes";
 
 export const Qotd = () => {
   const SPACE_ID = import.meta.env.VITE_SPACE_ID;
   const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
-  console.log("Space ID:", SPACE_ID);
-  console.log("Access Token:", ACCESS_TOKEN);
+  const refreshTime = 15 * 1000;
+
   // save quotes from contentful cms
   const [quotes, setQuotes] = useState([]);
   // save quote currently displayed
@@ -65,7 +64,7 @@ export const Qotd = () => {
       if (fetchedQuotes) {
         // Set the initial quote only if there are fetched quotes
         const now = Date.now();
-        if (!lastUpdated || now - lastUpdated >= 10 * 1000) {
+        if (!lastUpdated || now - lastUpdated >= refreshTime) {
           updateQuote(); // Update quote if more than an hour has passed
         }
       }
@@ -74,26 +73,34 @@ export const Qotd = () => {
     // Set an interval to check every hour
     const intervalId = setInterval(() => {
       const currentTime = Date.now();
-      if (currentTime - lastUpdated >= 10 * 1000) {
+      if (currentTime - lastUpdated >= refreshTime) {
         fetchQuotes().then((fetchedQuotes) => {
           updateQuote(); // Update the current quote
         });
       }
-    }, 10 * 1000); // Check every hour
+    }, refreshTime); // Check every hour
 
     return () => clearInterval(intervalId);
   }, [quotes, lastUpdated]);
 
   return (
-    <div>
-      <h1>Quote of the Day</h1>
+    <section className={styles.qotdSection}>
+      <h1 className={styles.title}>Quote of the Day</h1>
       {currentQuote && (
         <blockquote>
-          <p>{currentQuote.quoteText}</p> {/* Adjust based on your model */}
-          <footer>{`- ${currentQuote.quoteAuthor}`}</footer>
+          <p className={styles.quoteText}>{currentQuote.quoteText}</p>{" "}
+          {/* Adjust based on your model */}
+          <footer
+            className={styles.quoteAuthor}
+          >{`- ${currentQuote.quoteAuthor}`}</footer>
           {/* Adjust based on your model */}
         </blockquote>
       )}
-    </div>
+      <img
+        className={styles.quoteImage}
+        src="../../assets/thus-spoke-zarathustra.jpg"
+        alt="Thus Spoke Zarathustra"
+      />
+    </section>
   );
 };
