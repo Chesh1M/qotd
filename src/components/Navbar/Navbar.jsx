@@ -20,7 +20,7 @@ export const Navbar = () => {
   return (
     <>
       <nav>
-        <div className="container flex justify-between items-center py-8">
+        <div className="container flex justify-between items-center py-8 px-6">
           {/* My name section */}
           <div className="text-2xl flex items-center gap-2 font-bold">
             <NavLink to="/" onClick={closeNavbar}>
