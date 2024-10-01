@@ -2,7 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLinks } from "./links";
 
-export const ResponsiveMenu = ({ open }) => {
+export const ResponsiveMenu = ({ open, closeNavbar }) => {
   return (
     <AnimatePresence mode="wait">
       {open && (
@@ -15,7 +15,7 @@ export const ResponsiveMenu = ({ open }) => {
         >
           <div className="text-xl font-semibold uppercase bg-blue-950 text-white py-10 m-6 rounded-3xl">
             <ul className="flex flex-col justify-center items-center gap-10">
-              <NavLinks />
+              <NavLinks closeNavbar={closeNavbar} />
             </ul>
           </div>
         </motion.div>

@@ -13,6 +13,9 @@ export const Navbar = () => {
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
+  const closeNavbar = () => {
+    setIsOpen(false); // Closes the navbar when a link is clicked
+  };
 
   return (
     <>
@@ -20,12 +23,14 @@ export const Navbar = () => {
         <div className="container flex justify-between items-center py-8">
           {/* My name section */}
           <div className="text-2xl flex items-center gap-2 font-bold">
-            <NavLink to="/">AowenC</NavLink>
+            <NavLink to="/" onClick={closeNavbar}>
+              AowenC
+            </NavLink>
           </div>
           {/* Menu section */}
           <div className="hidden lg:block">
             <ul className="flex items-center gap-6 text-gray-600">
-              <NavLinks />
+              <NavLinks closeNavbar={closeNavbar} />
             </ul>
           </div>
           {/* Mobile hamburger menu section */}
@@ -35,7 +40,7 @@ export const Navbar = () => {
         </div>
       </nav>
       {/* Mobile sidebar section */}
-      <ResponsiveMenu open={isOpen} />
+      <ResponsiveMenu open={isOpen} closeNavbar={closeNavbar} />
     </>
   );
 };
