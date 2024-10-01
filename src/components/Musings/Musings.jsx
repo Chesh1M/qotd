@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "./Qotd.module.css";
+import styles from "./Musings.module.css";
 import { getImageUrl } from "../../utils";
 
 const refreshTime = 15 * 1000;
 
-export const Qotd = () => {
+export const Musings = () => {
   const SPACE_ID = import.meta.env.VITE_SPACE_ID;
   const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
 
@@ -86,14 +86,20 @@ export const Qotd = () => {
   }, [quotes, lastUpdated]);
 
   return (
-    <section className={styles.qotdSection}>
-      <h1 className={styles.title}>Quote of the Day</h1>
+    <section
+      className={`${styles.qotdSection} flex flex-col justify-start text-center w-full min-h-screen h-full`}
+    >
+      <h1 className={`${styles.title} text-2xl md:text-4xl font-black`}>
+        A-musing thoughts
+      </h1>
       {currentQuote && (
         <blockquote>
-          <p className={styles.quoteText}>{currentQuote.quoteText}</p>{" "}
+          <p className={`${styles.quoteText} text-lg md:text-2xl`}>
+            {currentQuote.quoteText}
+          </p>{" "}
           {/* Adjust based on your model */}
           <footer
-            className={styles.quoteAuthor}
+            className={`${styles.quoteAuthor} text-md md:text-xl`}
           >{`- ${currentQuote.quoteAuthor}`}</footer>
           {/* Adjust based on your model */}
         </blockquote>

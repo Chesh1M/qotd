@@ -1,11 +1,21 @@
 import React from "react";
 import styles from "./App.module.css";
-import { Qotd } from "./components/Qotd/Qotd";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { Navbar } from "./components/Navbar/Navbar";
+import { HomePage } from "./pages/HomePage";
+import { MusingsPage } from "./pages/MusingsPage";
+import { GalleryPage } from "./pages/GalleryPage";
 
 export const App = () => {
   return (
-    <div className={styles.App}>
-      <Qotd />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/musings" element={<MusingsPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
+      </Routes>
+    </Router>
   );
 };
