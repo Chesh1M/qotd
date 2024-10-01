@@ -1,5 +1,5 @@
 import React from "react";
 
 export const HomePage = () => {
-  return <div>HomePage</div>;
+  return <div className="h-screen">HomePage</div>;
 };
