@@ -1,5 +1,5 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -10,12 +10,32 @@ import { NavLinks } from "./links";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // To toggle navbar open/close when clicking menu icon
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
+  // To close navbar
   const closeNavbar = () => {
-    setIsOpen(false); // Closes the navbar when a link is clicked
+    setIsOpen(false);
   };
+
+  // Add a resize event listener to close the navbar dropdown when resizing the screen
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        // Tailwind's 'lg' breakpoint
+        closeNavbar();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <>
