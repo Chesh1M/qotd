@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -16,6 +16,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const themeIcon = theme === "light" ? sun : moon;
+  const navbarRef = useRef(null);
 
   // Function to toggle the navbar state
   const toggleNavbar = () => {
@@ -44,7 +45,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className={styles.navbar}>
+      <nav className={styles.navbar} ref={navbarRef}>
         <div className="container flex justify-between items-center py-8 px-6">
           {/* My name section */}
           <div className="text-2xl flex items-center gap-2">
@@ -87,7 +88,11 @@ export const Navbar = () => {
         </div>
       </nav>
       {/* Mobile sidebar section */}
-      <ResponsiveMenu open={isOpen} closeNavbar={closeNavbar} />
+      <ResponsiveMenu
+        open={isOpen}
+        closeNavbar={closeNavbar}
+        navbarRef={navbarRef}
+      />
     </>
   );
 };

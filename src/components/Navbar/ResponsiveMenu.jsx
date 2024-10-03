@@ -2,13 +2,18 @@ import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLinks } from "./links";
 
-export const ResponsiveMenu = ({ open, closeNavbar }) => {
+export const ResponsiveMenu = ({ open, closeNavbar, navbarRef }) => {
   const menuRef = useRef(null);
 
   useEffect(() => {
     // Function to handle click outside the menu
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target)
+      ) {
         closeNavbar(); // Close the navbar when clicking outside
       }
     };
