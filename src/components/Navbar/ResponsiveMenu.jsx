@@ -39,7 +39,8 @@ export const ResponsiveMenu = ({ open, closeNavbar, navbarRef }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -100 }}
           transition={{ duration: 0.3 }}
-          className="absolute left-0 w-full z-20"
+          className="fixed left-0 w-full z-20"
+          style={{ top: "104px" }}
         >
           <div
             className="text-xl font-semibold uppercase py-10 lg:hidden"

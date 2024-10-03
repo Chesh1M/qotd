@@ -26,6 +26,7 @@ export const Navbar = () => {
   // Get current page
   const { pathname } = useLocation();
 
+  // Smooth scrolling
   useEffect(() => {
     // Detect if there's a hash in the URL after navigation
     if (location.hash) {
@@ -77,7 +78,7 @@ export const Navbar = () => {
       <nav className={styles.navbar} ref={navbarRef}>
         <div className="container flex justify-between items-center py-8 px-6">
           {/* My name section */}
-          <div className="text-2xl flex items-center gap-2">
+          <div className="text-2xl font-black flex items-center gap-2">
             <NavLink
               to="/"
               onClick={handleAboutClick}
@@ -111,11 +112,16 @@ export const Navbar = () => {
           <div className="lg:hidden flex items-center">
             <button onClick={toggleNavbar}>
               {isOpen ? (
-                <X style={{ color: "var(--color-text)" }} />
+                <X
+                  className={styles.hamburgerIcon}
+                  style={{ color: "var(--color-text)" }}
+                  size={28}
+                />
               ) : (
                 <Menu
-                  className="flex-auto"
+                  className={`flex-auto ${styles.hamburgerIcon}`}
                   style={{ color: "var(--color-text)" }}
+                  size={28}
                 />
               )}
             </button>

@@ -26,15 +26,9 @@
   width: auto;
 }
 
-.iconLight {
-  color: var(--color-text); /* Light theme color */
-}
-.iconDark {
-  color: var(--color-text); /* Dark theme color */
-}
-
+/* Override transition for the hamburger icon */
 .hamburgerIcon {
-  height: 40px;
+  transition: none;
 }
 
 @media screen and (max-width: 414px) {

@@ -15,8 +15,9 @@ export const Hero = () => {
   const linkedInIcon = theme === "light" ? linkedInLight : linkedInDark;
 
   return (
-    <section className={`${styles.container}`}>
-      <div className={`${styles.myImgContainer} my-10`}>
+    <section className={`${styles.heroContainer}`}>
+      {/* Image container */}
+      <div className={`${styles.myImgContainer}`}>
         <img
           className={`${styles.myImg}`}
           src={myImg}
@@ -24,21 +25,22 @@ export const Hero = () => {
         />
       </div>
 
-      <div>
+      {/* Info container */}
+      <div className={`${styles.myInfoContainer}`}>
         <h1
-          className={`text-5xl text-center mb-6`}
+          className={`${styles.myName} text-5xl`}
           style={{ color: "var(--color-text)" }}
         >
-          Aowen
+          Chin Ao-Wen
         </h1>
         <h2
-          className={`text-2xl text-center mb-4`}
+          className={`${styles.myRole} text-2xl`}
           style={{ color: "var(--color-text)" }}
         >
-          Data Analyst
+          I'm a Data Analyst
         </h2>
 
-        <span className={`${styles.socialIcons} mb-4`}>
+        <span className={`${styles.socialIcons}`}>
           <a href="https://github.com/Chesh1M" target="_blank">
             <img src={githubIcon} alt="Github Icon" />
           </a>
@@ -48,17 +50,16 @@ export const Hero = () => {
         </span>
 
         <p
-          className={`text-lg text-center mb-14`}
+          className={`${styles.myDescription} text-lg`}
           style={{ color: "var(--color-text)" }}
         >
-          With a passion for developing modern web applications
+          With a passion for all things tech, data, and developing modern web
+          applications. Check out my resume!
         </p>
 
-        <div className={`flex justify-center`}>
+        <div className={`flex justify-center mb-10`}>
           <a href={resume} download>
-            <button className="hover text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
-              My Resume
-            </button>
+            <button className={styles.resumeBtn}>My Resume</button>
           </a>
         </div>
       </div>
