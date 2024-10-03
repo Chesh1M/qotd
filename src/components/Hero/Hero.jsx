@@ -28,7 +28,7 @@ export const Hero = () => {
       {/* Info container */}
       <div className={`${styles.myInfoContainer}`}>
         <h1
-          className={`${styles.myName} text-5xl`}
+          className={`${styles.myName}`}
           style={{ color: "var(--color-text)" }}
         >
           Chin Ao-Wen

@@ -1,12 +1,12 @@
 @import "../../vars.css";
 
-/* Hero.module.css */
 .heroContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center items by default */
-  min-height: 100dvh;
+  justify-content: center;
+  /* min-height: 100dvh; */
+  padding: 60px 0;
   background-color: var(--color-bg);
 }
 
@@ -26,6 +26,7 @@
   justify-content: center;
   text-align: center;
   margin-bottom: 24px;
+  font-size: 3rem;
 }
 .myRole {
   display: flex;
@@ -69,8 +70,27 @@
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
 
+@media (width >= 1000px) {
+  .heroContainer {
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 100px 0;
+  }
+  .myInfoContainer {
+    width: 55%;
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .myImgContainer {
+    width: 45%;
+    padding: 0 50px;
+  }
+}
+
 @media screen and (max-width: 640px) {
-  .container {
+  .heroContainer {
     align-items: start; /* Align items to start horizontally */
     justify-content: flex-start; /* Align items to the top vertically */
     padding-top: 20px;
@@ -81,5 +101,11 @@
       width: 80%;
       height: auto;
     }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .myName {
+    font-size: 2.5rem;
   }
 }
