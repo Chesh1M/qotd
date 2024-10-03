@@ -19,6 +19,7 @@
 .quoteAuthor {
   font-style: italic;
   margin-bottom: 40px;
+  word-wrap: break-word;
 }
 
 .quoteImage {
