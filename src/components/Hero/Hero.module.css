@@ -56,8 +56,8 @@
   margin-bottom: 48px;
 }
 .resumeBtn {
-  background-color: var(--color-secondary);
-  color: var(--color-text);
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text);
   border: none;
   border-radius: 20px;
   width: 152px;

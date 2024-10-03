@@ -97,6 +97,7 @@ export const Navbar = () => {
             <NavLink
               to="/"
               onClick={handleAboutClick}
+              className={styles.logo}
               style={{ color: "var(--color-text)" }}
             >
               AowenC

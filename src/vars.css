@@ -5,6 +5,8 @@
   --color-primary: #2f27ce;
   --color-secondary: #efdbff;
   --color-accent: #443dff;
+  --color-btn-bg: var(--color-accent);
+  --color-btn-text: #fbfbfe;
 
   /* Fonts */
   --font-montserrat: "Montserrat";
@@ -17,6 +19,8 @@
   --color-primary: #3a31d8;
   --color-secondary: #140024;
   --color-accent: #0600c2;
+  --color-btn-bg: var(--color-accent);
+  --color-btn-text: #eae9fc;
 }
 
 * {

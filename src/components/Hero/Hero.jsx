@@ -39,10 +39,18 @@ export const Hero = () => {
           Chin Ao-Wen
         </h1>
         <h2
-          className={`${styles.myRole} text-2xl`}
+          className={`${styles.myRole} text-3xl`}
           style={{ color: "var(--color-text)" }}
         >
-          I'm a Data Analyst
+          <p className={`text-3xl`} style={{ color: "var(--color-text)" }}>
+            I'm a
+          </p>
+          <p
+            className={`text-4xl ml-3`}
+            style={{ color: "var(--color-accent)" }}
+          >
+            Data Analyst
+          </p>
         </h2>
 
         <span className={`${styles.socialIcons}`}>

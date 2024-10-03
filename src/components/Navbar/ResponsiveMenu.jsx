@@ -59,7 +59,7 @@ export const ResponsiveMenu = ({
           <div
             className="text-xl font-semibold uppercase py-10 lg:hidden"
             style={{
-              backgroundColor: "var(--color-secondary)",
+              backgroundColor: "var(--color-bg)",
               color: "var(--color-text)",
               borderBottomLeftRadius: "1.5rem",
               borderBottomRightRadius: "1.5rem",
