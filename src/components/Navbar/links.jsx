@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
-export const NavLinks = ({ closeNavbar }) => {
+export const NavLinks = ({ closeNavbar, handleAboutClick }) => {
   return (
     <>
-      <NavLink to="#about" className={styles.navlinks} onClick={closeNavbar}>
+      <NavLink to="/" className={styles.navlinks} onClick={handleAboutClick}>
         About
       </NavLink>
       <NavLink
@@ -14,10 +14,14 @@ export const NavLinks = ({ closeNavbar }) => {
       >
         Experiences
       </NavLink>
-      <NavLink to="#projects" className={styles.navlinks} onClick={closeNavbar}>
+      <NavLink
+        to="/#projects"
+        className={styles.navlinks}
+        onClick={closeNavbar}
+      >
         Projects
       </NavLink>
-      <NavLink to="#contact" className={styles.navlinks} onClick={closeNavbar}>
+      <NavLink to="/#contact" className={styles.navlinks} onClick={closeNavbar}>
         Contact
       </NavLink>
       <NavLink to="/musings" className={styles.navlinks} onClick={closeNavbar}>

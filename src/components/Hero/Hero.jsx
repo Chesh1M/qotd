@@ -15,7 +15,7 @@ export const Hero = () => {
   const linkedInIcon = theme === "light" ? linkedInLight : linkedInDark;
 
   return (
-    <section id="hero" className={`${styles.container}`}>
+    <section className={`${styles.container}`}>
       <div className={`${styles.myImgContainer} my-10`}>
         <img
           className={`${styles.myImg}`}

@@ -2,7 +2,7 @@ import { Menu, X } from "lucide-react";
 
 import { useState, useEffect, useRef } from "react";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import myLogo from "../../assets/me-dark.png";
 import styles from "./Navbar.module.css";
@@ -13,10 +13,30 @@ import sun from "../../assets/sun.svg";
 import moon from "../../assets/moon.svg";
 
 export const Navbar = () => {
+  // Hamburger menu state
   const [isOpen, setIsOpen] = useState(false);
+
+  // Website theme
   const { theme, toggleTheme } = useTheme();
   const themeIcon = theme === "light" ? sun : moon;
+
+  // Reference to detect clicks on navbar
   const navbarRef = useRef(null);
+
+  // Get current page
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Detect if there's a hash in the URL after navigation
+    if (location.hash) {
+      const elementId = location.hash.substring(1); // Remove the '#' from the hash
+      const element = document.getElementById(elementId);
+      if (element) {
+        // Scroll smoothly to the element
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   // Function to toggle the navbar state
   const toggleNavbar = () => {
@@ -26,6 +46,15 @@ export const Navbar = () => {
   // Function to close the navbar
   const closeNavbar = () => {
     setIsOpen(false);
+  };
+
+  // Function to handle clicking "About"
+  const handleAboutClick = () => {
+    if (pathname === "/") {
+      // Scroll to top if already on the homepage
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    closeNavbar(); // Close the navbar
   };
 
   // Add a resize event listener to close the navbar dropdown when resizing the screen
@@ -51,7 +80,7 @@ export const Navbar = () => {
           <div className="text-2xl flex items-center gap-2">
             <NavLink
               to="/"
-              onClick={closeNavbar}
+              onClick={handleAboutClick}
               style={{ color: "var(--color-text)" }}
             >
               AowenC
@@ -71,7 +100,10 @@ export const Navbar = () => {
           {/* Menu section */}
           <div className="hidden lg:block">
             <ul className="flex items-center gap-6 text-gray-600">
-              <NavLinks closeNavbar={closeNavbar} />
+              <NavLinks
+                closeNavbar={closeNavbar}
+                handleAboutClick={handleAboutClick}
+              />
             </ul>
           </div>
 
