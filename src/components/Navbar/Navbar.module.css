@@ -18,6 +18,9 @@
   color: rgb(234 88 12 / var(--tw-text-opacity));
 }
 
+.themeIcon {
+  cursor: pointer;
+}
 .themeMode {
   height: 40px;
   width: auto;
@@ -32,4 +35,11 @@
 
 .hamburgerIcon {
   height: 40px;
+}
+
+@media screen and (max-width: 414px) {
+  .themeMode {
+    height: 35px;
+    width: auto;
+  }
 }
