@@ -1,4 +1,5 @@
 import { Menu, X } from "lucide-react";
+
 import { useState, useEffect } from "react";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -75,7 +76,13 @@ export const Navbar = () => {
 
           {/* Mobile hamburger menu section */}
           <div className="lg:hidden">
-            <button onClick={toggleNavbar}>{isOpen ? <X /> : <Menu />}</button>
+            <button onClick={toggleNavbar}>
+              {isOpen ? (
+                <X style={{ color: "var(--color-text)" }} />
+              ) : (
+                <Menu style={{ color: "var(--color-text)" }} />
+              )}
+            </button>
           </div>
         </div>
       </nav>
