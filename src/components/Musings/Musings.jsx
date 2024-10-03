@@ -105,28 +105,23 @@ export const Musings = () => {
     <section
       className={`${styles.qotdSection} flex flex-col justify-start text-center w-full min-h-screen h-full`}
       style={{
-        backgroundColor: "var(--color-bg)",
         paddingTop: `${navbarHeight + 40}px`,
       }}
     >
-      <h1
-        className={`${styles.title} text-2xl md:text-4xl`}
-        style={{ color: "var(--color-text)" }}
-      >
+      <h1 className={`${styles.title} text-2xl md:text-4xl`}>
         A-musing thoughts
       </h1>
+      <p className={styles.disclaimer}>
+        You have 12 hours to ponder over each of these, take your time to think
+        deeper than you want to! <br /> (some will require additional context -
+        Google it!)
+      </p>
       {currentQuote && (
         <blockquote>
-          <p
-            className={`${styles.quoteText} text-lg md:text-2xl`}
-            style={{ color: "var(--color-text)" }}
-          >
+          <p className={`${styles.quoteText} text-lg md:text-2xl`}>
             {currentQuote.quoteText}
           </p>
-          <footer
-            className={`${styles.quoteAuthor} text-md md:text-xl`}
-            style={{ color: "var(--color-text)" }}
-          >
+          <footer className={`${styles.quoteAuthor} text-md md:text-xl`}>
             {currentQuote.quoteAuthor
               ? `- ${currentQuote.quoteAuthor.trim()}`
               : "Anonymous"}

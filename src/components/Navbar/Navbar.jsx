@@ -56,6 +56,9 @@ export const Navbar = () => {
     if (pathname === "/") {
       // Scroll to top if already on the homepage
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // If navigating to the homepage
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top
     }
     closeNavbar(); // Close the navbar
   };
@@ -145,6 +148,7 @@ export const Navbar = () => {
         open={isOpen}
         closeNavbar={closeNavbar}
         navbarRef={navbarRef}
+        handleAboutClick={handleAboutClick}
       />
     </>
   );

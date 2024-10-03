@@ -3,7 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NavLinks } from "./links";
 import { useNavbarContext } from "../Navbar/NavbarContext";
 
-export const ResponsiveMenu = ({ open, closeNavbar, navbarRef }) => {
+export const ResponsiveMenu = ({
+  open,
+  closeNavbar,
+  navbarRef,
+  handleAboutClick,
+}) => {
   const menuRef = useRef(null);
   const { navbarHeight } = useNavbarContext();
 
@@ -63,7 +68,10 @@ export const ResponsiveMenu = ({ open, closeNavbar, navbarRef }) => {
             }}
           >
             <ul className="flex flex-col justify-center items-center gap-8">
-              <NavLinks closeNavbar={closeNavbar} />
+              <NavLinks
+                closeNavbar={closeNavbar}
+                handleAboutClick={handleAboutClick}
+              />
             </ul>
           </div>
         </motion.div>
