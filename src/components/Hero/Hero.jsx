@@ -54,7 +54,7 @@ export const Hero = () => {
           style={{ color: "var(--color-text)" }}
         >
           With a passion for all things tech, data, and developing modern web
-          applications. Check out my resume!
+          applications. <br /> Check out my resume!
         </p>
 
         <div className={`flex justify-center mb-10`}>

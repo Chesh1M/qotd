@@ -27,12 +27,17 @@
   text-align: center;
   margin-bottom: 24px;
   font-size: 3rem;
+  text-transform: uppercase;
+  font-family: "Rubik Variable";
+  font-weight: 800;
 }
 .myRole {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  font-family: "Rubik Variable";
+  font-weight: 700;
 }
 .socialIcons {
   display: flex; /* Flexbox to ensure icons are in a row */
@@ -48,7 +53,7 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
 }
 .resumeBtn {
   background-color: var(--color-secondary);
@@ -101,6 +106,10 @@
       width: 80%;
       height: auto;
     }
+  }
+
+  .myDescription {
+    padding: 0 10px;
   }
 }
 
