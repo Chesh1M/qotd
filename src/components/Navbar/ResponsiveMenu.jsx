@@ -42,13 +42,15 @@ export const ResponsiveMenu = ({ open, closeNavbar, navbarRef }) => {
           className="absolute left-0 w-full z-20"
         >
           <div
-            className="text-xl font-semibold uppercase py-10 rounded-3xl lg:hidden"
+            className="text-xl font-semibold uppercase py-10 lg:hidden"
             style={{
               backgroundColor: "var(--color-secondary)",
               color: "var(--color-text)",
+              borderBottomLeftRadius: "1.5rem",
+              borderBottomRightRadius: "1.5rem",
             }}
           >
-            <ul className="flex flex-col justify-center items-center gap-10">
+            <ul className="flex flex-col justify-center items-center gap-8">
               <NavLinks closeNavbar={closeNavbar} />
             </ul>
           </div>
