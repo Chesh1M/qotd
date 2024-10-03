@@ -145,7 +145,6 @@ export const Navbar = () => {
         open={isOpen}
         closeNavbar={closeNavbar}
         navbarRef={navbarRef}
-        // navbarHeight={navbarHeight}
       />
     </>
   );
