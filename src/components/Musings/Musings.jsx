@@ -2,30 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Musings.module.css";
 import { getImageUrl } from "../../utils";
-import { useTheme } from "../Theme/Theme";
-
-const refreshTime = 15 * 1000;
+import { useNavbarContext } from "../Navbar/NavbarContext";
 
 export const Musings = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { navbarHeight } = useNavbarContext();
 
   const SPACE_ID = import.meta.env.VITE_SPACE_ID;
   const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
 
-  // save quotes from contentful cms
+  // Save quotes from contentful cms
   const [quotes, setQuotes] = useState([]);
-  // save quote currently displayed
+  // Save quote currently displayed
   const [currentQuote, setCurrentQuote] = useState(() => {
     const storedQuote = localStorage.getItem("currentQuote");
     return storedQuote ? JSON.parse(storedQuote) : null;
   });
-  // save timestamp of the last updated quote
+  // Save timestamp of the last updated quote
   const [lastUpdated, setLastUpdated] = useState(() => {
     const storedTime = localStorage.getItem("lastUpdated");
     return storedTime ? JSON.parse(storedTime) : null;
   });
 
-  // Function to fetch & store quotes from contentful cms
+  // Function to fetch & store quotes from Contentful CMS
   const fetchQuotes = async () => {
     try {
       const response = await axios.get(
@@ -48,50 +46,68 @@ export const Musings = () => {
     return null; // Return null if there are no quotes
   };
 
-  useEffect(() => {
-    // Function to update current quote
-    const updateQuote = () => {
-      // get a random quote from the list of quotes
-      const newQuote = getRandomQuote(quotes);
-      if (newQuote) {
-        // update current quote state and localstorage
-        setCurrentQuote(newQuote);
-        localStorage.setItem("currentQuote", JSON.stringify(newQuote));
-        // update timestamp of new quote (both state and in localstorage)
-        const now = Date.now();
-        localStorage.setItem("lastUpdated", JSON.stringify(now));
-        setLastUpdated(now);
-      }
-    };
+  // Function to schedule the next fetch at 8 AM or 8 PM
+  const scheduleNextFetch = () => {
+    const now = new Date();
+    const hours = now.getHours();
+    const nextFetchTime =
+      hours < 8
+        ? new Date(now.setHours(8, 0, 0, 0))
+        : hours < 20
+        ? new Date(now.setHours(20, 0, 0, 0))
+        : new Date(now.setDate(now.getDate() + 1), 8, 0, 0);
 
-    // Fetch quotes initially
-    fetchQuotes().then((fetchedQuotes) => {
-      if (fetchedQuotes) {
-        // Set the initial quote only if there are fetched quotes
-        const now = Date.now();
-        if (!lastUpdated || now - lastUpdated >= refreshTime) {
-          updateQuote(); // Update quote if more than an hour has passed
+    const timeUntilNextFetch = nextFetchTime - Date.now();
+
+    // console.log(`Current Time: ${new Date().toLocaleTimeString()}`);
+    // console.log(`Next Fetch Time: ${nextFetchTime.toLocaleTimeString()}`);
+
+    setTimeout(() => {
+      fetchQuotes().then((fetchedQuotes) => {
+        if (fetchedQuotes) {
+          const newQuote = getRandomQuote(fetchedQuotes);
+          if (newQuote) {
+            setCurrentQuote(newQuote);
+            localStorage.setItem("currentQuote", JSON.stringify(newQuote));
+            localStorage.setItem("lastUpdated", Date.now());
+            setLastUpdated(Date.now());
+          }
         }
-      }
-    });
+      });
 
-    // Set an interval to check every hour
-    const intervalId = setInterval(() => {
-      const currentTime = Date.now();
-      if (currentTime - lastUpdated >= refreshTime) {
+      // Set the interval for subsequent fetches every 12 hours
+      setInterval(() => {
         fetchQuotes().then((fetchedQuotes) => {
-          updateQuote(); // Update the current quote
+          if (fetchedQuotes) {
+            const newQuote = getRandomQuote(fetchedQuotes);
+            if (newQuote) {
+              setCurrentQuote(newQuote);
+              localStorage.setItem("currentQuote", JSON.stringify(newQuote));
+              localStorage.setItem("lastUpdated", Date.now());
+              setLastUpdated(Date.now());
+            }
+          }
         });
-      }
-    }, refreshTime); // Check every hour
+      }, 12 * 60 * 60 * 1000); // 12 hours
+    }, timeUntilNextFetch);
+  };
 
-    return () => clearInterval(intervalId);
-  }, [quotes, lastUpdated]);
+  useEffect(() => {
+    scheduleNextFetch(); // Schedule fetch when component mounts
+
+    return () => {
+      // Optional: Clear intervals if needed on unmount
+      clearInterval(); // Clear intervals if needed
+    };
+  }, []);
 
   return (
     <section
       className={`${styles.qotdSection} flex flex-col justify-start text-center w-full min-h-screen h-full`}
-      style={{ backgroundColor: "var(--color-bg)" }}
+      style={{
+        backgroundColor: "var(--color-bg)",
+        paddingTop: `${navbarHeight + 40}px`,
+      }}
     >
       <h1
         className={`${styles.title} text-2xl md:text-4xl`}
@@ -106,13 +122,15 @@ export const Musings = () => {
             style={{ color: "var(--color-text)" }}
           >
             {currentQuote.quoteText}
-          </p>{" "}
-          {/* Adjust based on your model */}
+          </p>
           <footer
             className={`${styles.quoteAuthor} text-md md:text-xl`}
             style={{ color: "var(--color-text)" }}
-          >{`- ${currentQuote.quoteAuthor}`}</footer>
-          {/* Adjust based on your model */}
+          >
+            {currentQuote.quoteAuthor
+              ? `- ${currentQuote.quoteAuthor.trim()}`
+              : "Anonymous"}
+          </footer>
         </blockquote>
       )}
       <img
