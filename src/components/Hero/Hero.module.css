@@ -5,12 +5,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* Center items by default */
   min-height: 100vh;
   background-color: var(--color-bg);
 }
 
 .myImgContainer {
+  display: flex;
+  justify-content: center;
   margin-bottom: 30px;
 }
 
@@ -28,4 +30,16 @@
 .socialIcons a img {
   width: 30px;
   height: 30px;
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    align-items: start; /* Align items to start horizontally */
+    justify-content: flex-start; /* Align items to the top vertically */
+    padding-top: 20px;
+  }
+  .myImg {
+    width: 80%;
+    height: auto;
+  }
 }
