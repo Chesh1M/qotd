@@ -4,9 +4,12 @@ import { App } from "./App.jsx";
 import "./index.css";
 
 import "@fontsource/montserrat";
+import { Theme } from "./components/Theme/Theme.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <Theme>
+      <App />
+    </Theme>
   </StrictMode>
 );

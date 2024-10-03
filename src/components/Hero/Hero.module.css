@@ -1,0 +1,30 @@
+@import "../../vars.css";
+
+/* Hero.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.myImgContainer {
+  margin-bottom: 30px;
+}
+
+.myImg {
+  width: 512px;
+  height: auto;
+}
+
+.socialIcons {
+  display: flex; /* Flexbox to ensure icons are in a row */
+  gap: 15px; /* Add some space between the icons */
+  justify-content: center;
+}
+
+.socialIcons a img {
+  width: 30px;
+  height: 30px;
+}

@@ -7,9 +7,12 @@ import myLogo from "../../assets/me-dark.png";
 import styles from "./Navbar.module.css";
 import { ResponsiveMenu } from "./ResponsiveMenu";
 import { NavLinks } from "./links";
+import { useTheme } from "../Theme/Theme";
+import themeIcon from "../../assets/sun.svg";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   // To toggle navbar open/close when clicking menu icon
   const toggleNavbar = () => {
@@ -39,14 +42,24 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav>
+      <nav className={styles.navbar}>
         <div className="container flex justify-between items-center py-8 px-6">
           {/* My name section */}
-          <div className="text-2xl flex items-center gap-2 font-bold">
+          <div className="text-2xl flex items-center gap-2 font-black">
             <NavLink to="/" onClick={closeNavbar}>
               AowenC
             </NavLink>
           </div>
+
+          {/* Theme setting */}
+          <div>
+            <img
+              className={styles.themeMode}
+              src={themeIcon}
+              alt="Theme mode icon"
+            />
+          </div>
+
           {/* Menu section */}
           <div className="hidden lg:block">
             <ul className="flex items-center gap-6 text-gray-600">
