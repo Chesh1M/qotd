@@ -76,12 +76,15 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile hamburger menu section */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center">
             <button onClick={toggleNavbar}>
               {isOpen ? (
                 <X style={{ color: "var(--color-text)" }} />
               ) : (
-                <Menu style={{ color: "var(--color-text)" }} />
+                <Menu
+                  className="flex-auto"
+                  style={{ color: "var(--color-text)" }}
+                />
               )}
             </button>
           </div>
