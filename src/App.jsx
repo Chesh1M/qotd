@@ -6,16 +6,19 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { HomePage } from "./pages/HomePage";
 import { MusingsPage } from "./pages/MusingsPage";
 import { GalleryPage } from "./pages/GalleryPage";
+import { NavbarProvider } from "./components/Navbar/NavbarContext";
 
 export const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/musings" element={<MusingsPage />} />
-        <Route path="/gallery" element={<GalleryPage />} />
-      </Routes>
-    </Router>
+    <NavbarProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/musings" element={<MusingsPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+        </Routes>
+      </Router>
+    </NavbarProvider>
   );
 };

@@ -8,14 +8,19 @@ import linkedInLight from "../../assets/linkedin-light.svg";
 import linkedInDark from "../../assets/linkedin-dark.svg";
 import resume from "../../assets/resume.pdf";
 import { useTheme } from "../Theme/Theme";
+import { useNavbarContext } from "../Navbar/NavbarContext";
 
 export const Hero = () => {
   const { theme, toggleTheme } = useTheme();
   const githubIcon = theme === "light" ? githubLight : githubDark;
   const linkedInIcon = theme === "light" ? linkedInLight : linkedInDark;
+  const { navbarHeight } = useNavbarContext();
 
   return (
-    <section className={`${styles.heroContainer}`}>
+    <section
+      className={`${styles.heroContainer}`}
+      style={{ paddingTop: `${navbarHeight}px` }}
+    >
       {/* Image container */}
       <div className={`${styles.myImgContainer}`}>
         <img

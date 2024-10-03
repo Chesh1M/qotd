@@ -1,16 +1,14 @@
-import { Menu, X } from "lucide-react";
-
-import { useState, useEffect, useRef } from "react";
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
-
-import myLogo from "../../assets/me-dark.png";
 import styles from "./Navbar.module.css";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { ResponsiveMenu } from "./ResponsiveMenu";
 import { NavLinks } from "./links";
 import { useTheme } from "../Theme/Theme";
 import sun from "../../assets/sun.svg";
 import moon from "../../assets/moon.svg";
+import { useNavbarContext } from "./NavbarContext";
 
 export const Navbar = () => {
   // Hamburger menu state
@@ -22,6 +20,10 @@ export const Navbar = () => {
 
   // Reference to detect clicks on navbar
   const navbarRef = useRef(null);
+
+  const { setNavbarHeight } = useNavbarContext(); // Get the setter from the context
+  // State to store navbar height (to adjust menu position)
+  // const [navbarHeight, setNavbarHeight] = useState(0);
 
   // Get current page
   const { pathname } = useLocation();
@@ -64,14 +66,24 @@ export const Navbar = () => {
       if (window.innerWidth >= 1024) {
         closeNavbar(); // Close the navbar if the screen is resized
       }
+
+      // Update the navbar height dynamically
+      if (navbarRef.current) {
+        setNavbarHeight(navbarRef.current.offsetHeight);
+      }
     };
+
+    // Set the initial navbar height
+    if (navbarRef.current) {
+      setNavbarHeight(navbarRef.current.offsetHeight);
+    }
 
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [closeNavbar, setNavbarHeight]);
 
   return (
     <>
@@ -133,6 +145,7 @@ export const Navbar = () => {
         open={isOpen}
         closeNavbar={closeNavbar}
         navbarRef={navbarRef}
+        // navbarHeight={navbarHeight}
       />
     </>
   );

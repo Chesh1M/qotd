@@ -1,9 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLinks } from "./links";
+import { useNavbarContext } from "../Navbar/NavbarContext";
 
 export const ResponsiveMenu = ({ open, closeNavbar, navbarRef }) => {
   const menuRef = useRef(null);
+  const { navbarHeight } = useNavbarContext();
 
   useEffect(() => {
     // Function to handle click outside the menu
@@ -15,6 +17,7 @@ export const ResponsiveMenu = ({ open, closeNavbar, navbarRef }) => {
         !navbarRef.current.contains(event.target)
       ) {
         closeNavbar(); // Close the navbar when clicking outside
+        console.log(navbarHeight);
       }
     };
 
@@ -40,7 +43,7 @@ export const ResponsiveMenu = ({ open, closeNavbar, navbarRef }) => {
           exit={{ opacity: 0, y: -100 }}
           transition={{ duration: 0.3 }}
           className="fixed left-0 w-full z-20"
-          style={{ top: "104px" }}
+          style={{ top: `${navbarHeight}px` }}
         >
           <div
             className="text-xl font-semibold uppercase py-10 lg:hidden"
