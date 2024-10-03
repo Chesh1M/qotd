@@ -36,7 +36,7 @@ export const ResponsiveMenu = ({ open, closeNavbar }) => {
           transition={{ duration: 0.3 }}
           className="absolute top-20 left-0 w-full z-20"
         >
-          <div className="text-xl font-semibold uppercase bg-blue-950 text-white py-10 m-6 rounded-3xl">
+          <div className="text-xl font-semibold uppercase bg-blue-950 text-white py-10 m-6 rounded-3xl lg:hidden">
             <ul className="flex flex-col justify-center items-center gap-10">
               <NavLinks closeNavbar={closeNavbar} />
             </ul>

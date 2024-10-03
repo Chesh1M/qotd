@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Musings.module.css";
 import { getImageUrl } from "../../utils";
+import { useTheme } from "../Theme/Theme";
 
 const refreshTime = 15 * 1000;
 
 export const Musings = () => {
+  const { theme, toggleTheme } = useTheme();
+
   const SPACE_ID = import.meta.env.VITE_SPACE_ID;
   const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
 
@@ -88,18 +91,26 @@ export const Musings = () => {
   return (
     <section
       className={`${styles.qotdSection} flex flex-col justify-start text-center w-full min-h-screen h-full`}
+      style={{ backgroundColor: "var(--color-bg)" }}
     >
-      <h1 className={`${styles.title} text-2xl md:text-4xl font-black`}>
+      <h1
+        className={`${styles.title} text-2xl md:text-4xl`}
+        style={{ color: "var(--color-text)" }}
+      >
         A-musing thoughts
       </h1>
       {currentQuote && (
         <blockquote>
-          <p className={`${styles.quoteText} text-lg md:text-2xl`}>
+          <p
+            className={`${styles.quoteText} text-lg md:text-2xl`}
+            style={{ color: "var(--color-text)" }}
+          >
             {currentQuote.quoteText}
           </p>{" "}
           {/* Adjust based on your model */}
           <footer
             className={`${styles.quoteAuthor} text-md md:text-xl`}
+            style={{ color: "var(--color-text)" }}
           >{`- ${currentQuote.quoteAuthor}`}</footer>
           {/* Adjust based on your model */}
         </blockquote>

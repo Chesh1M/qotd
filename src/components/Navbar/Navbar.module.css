@@ -4,16 +4,32 @@
   position: sticky;
   top: 0; /* Stick to the top */
   z-index: 50; /* Ensure it's above other elements */
-  background-color: white; /* Optional: give it a background color */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: shadow to make it stand out */
+  background-color: var(--color-secondary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .navlinks {
   font-weight: 600;
   font-size: 16px;
   padding: 0.25rem 0.75rem;
-  transition: color 0.3s ease-in-out;
+  color: var(--color-text);
 }
 .navlinks:hover {
   --tw-text-opacity: 1;
   color: rgb(234 88 12 / var(--tw-text-opacity));
+}
+
+.themeMode {
+  height: 40px;
+  width: auto;
+}
+
+.iconLight {
+  color: var(--color-text); /* Light theme color */
+}
+.iconDark {
+  color: var(--color-text); /* Dark theme color */
+}
+
+.hamburgerIcon {
+  height: 40px;
 }

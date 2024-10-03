@@ -8,17 +8,20 @@ import styles from "./Navbar.module.css";
 import { ResponsiveMenu } from "./ResponsiveMenu";
 import { NavLinks } from "./links";
 import { useTheme } from "../Theme/Theme";
-import themeIcon from "../../assets/sun.svg";
+import sun from "../../assets/sun.svg";
+import moon from "../../assets/moon.svg";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const themeIcon = theme === "light" ? sun : moon;
 
-  // To toggle navbar open/close when clicking menu icon
+  // Function to toggle the navbar state
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
-  // To close navbar
+
+  // Function to close the navbar
   const closeNavbar = () => {
     setIsOpen(false);
   };
@@ -27,14 +30,12 @@ export const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        // Tailwind's 'lg' breakpoint
-        closeNavbar();
+        closeNavbar(); // Close the navbar if the screen is resized
       }
     };
 
     window.addEventListener("resize", handleResize);
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -45,18 +46,23 @@ export const Navbar = () => {
       <nav className={styles.navbar}>
         <div className="container flex justify-between items-center py-8 px-6">
           {/* My name section */}
-          <div className="text-2xl flex items-center gap-2 font-black">
-            <NavLink to="/" onClick={closeNavbar}>
+          <div className="text-2xl flex items-center gap-2">
+            <NavLink
+              to="/"
+              onClick={closeNavbar}
+              style={{ color: "var(--color-text)" }}
+            >
               AowenC
             </NavLink>
           </div>
 
           {/* Theme setting */}
-          <div>
+          <div className={styles.themeIcon}>
             <img
               className={styles.themeMode}
               src={themeIcon}
               alt="Theme mode icon"
+              onClick={toggleTheme}
             />
           </div>
 
@@ -66,6 +72,7 @@ export const Navbar = () => {
               <NavLinks closeNavbar={closeNavbar} />
             </ul>
           </div>
+
           {/* Mobile hamburger menu section */}
           <div className="lg:hidden">
             <button onClick={toggleNavbar}>{isOpen ? <X /> : <Menu />}</button>
