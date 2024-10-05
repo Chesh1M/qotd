@@ -98,13 +98,13 @@ export const Hero = () => {
               I'm a
             </span>
             <span
-              className={`text-3xl ml-3`}
+              className={`text-3xl ml-2`}
               style={{ color: "var(--color-accent)" }}
             >
               {text}
             </span>
             <span>
-              <Cursor />
+              <Cursor cursorColor="var(--color-accent)" />
             </span>
           </span>
         </h2>
