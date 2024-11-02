@@ -49,6 +49,13 @@ export const Musings = () => {
   // Function to schedule the next fetch at 8 AM or 8 PM
   const scheduleNextFetch = () => {
     const now = new Date();
+    const twelveHoursInMs = 12 * 60 * 60 * 1000;
+
+    // Check if the last update was within the last 12 hours
+    if (lastUpdated && now - lastUpdated < twelveHoursInMs) {
+      return; // Skip scheduling if last update was within 12 hours
+    }
+
     const hours = now.getHours();
     const nextFetchTime =
       hours < 8
@@ -93,12 +100,7 @@ export const Musings = () => {
   };
 
   useEffect(() => {
-    scheduleNextFetch(); // Schedule fetch when component mounts
-
-    return () => {
-      // Optional: Clear intervals if needed on unmount
-      clearInterval(); // Clear intervals if needed
-    };
+    scheduleNextFetch();
   }, []);
 
   return (
@@ -111,7 +113,7 @@ export const Musings = () => {
       <h1 className={`${styles.title} text-2xl md:text-4xl`}>
         A-musing thoughts
       </h1>
-      <p className={styles.disclaimer}>You have 12 hours to ponder</p>
+      {/* <p className={styles.disclaimer}>You have 12 hours to ponder</p> */}
       {currentQuote && (
         <blockquote>
           <p className={`${styles.quoteText} text-lg md:text-2xl`}>
