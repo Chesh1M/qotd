@@ -111,11 +111,7 @@ export const Musings = () => {
       <h1 className={`${styles.title} text-2xl md:text-4xl`}>
         A-musing thoughts
       </h1>
-      <p className={styles.disclaimer}>
-        You have 12 hours to ponder over each of these, take your time to think
-        deeper than you want to! <br /> (some will require additional context -
-        Google it!)
-      </p>
+      <p className={styles.disclaimer}>You have 12 hours to ponder</p>
       {currentQuote && (
         <blockquote>
           <p className={`${styles.quoteText} text-lg md:text-2xl`}>
