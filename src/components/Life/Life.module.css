@@ -1,0 +1,12 @@
+@import "../../vars.css";
+
+.lifeImagesSection {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.title {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text);
+}

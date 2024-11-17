@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar/Navbar";
 import { HomePage } from "./pages/HomePage";
 import { MusingsPage } from "./pages/MusingsPage";
-import { GalleryPage } from "./pages/GalleryPage";
+import { LifePage } from "./pages/LifePage";
 import { NavbarProvider } from "./components/Navbar/NavbarContext";
 
 export const App = () => {
@@ -15,7 +15,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/musings" element={<MusingsPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/life" element={<LifePage />} />
         </Routes>
       </Router>
     </NavbarProvider>

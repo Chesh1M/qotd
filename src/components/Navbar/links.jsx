@@ -27,7 +27,7 @@ export const NavLinks = ({ closeNavbar, handleAboutClick }) => {
       <NavLink to="/musings" className={styles.navlinks} onClick={closeNavbar}>
         Musings
       </NavLink>
-      <NavLink to="/gallery" className={styles.navlinks} onClick={closeNavbar}>
+      <NavLink to="/life" className={styles.navlinks} onClick={closeNavbar}>
         Life
       </NavLink>
     </>
