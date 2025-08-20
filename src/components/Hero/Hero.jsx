@@ -5,7 +5,7 @@ import githubLight from "../../assets/github-light.svg";
 import githubDark from "../../assets/github-dark.svg";
 import linkedInLight from "../../assets/linkedin-light.svg";
 import linkedInDark from "../../assets/linkedin-dark.svg";
-import resume from "../../assets/resume.pdf";
+import resume from "../../assets/Resume_Chin_Ao_Wen.pdf";
 import { useTheme } from "../Theme/Theme";
 import { useNavbarContext } from "../Navbar/NavbarContext";
 import { Cursor } from "react-simple-typewriter";
