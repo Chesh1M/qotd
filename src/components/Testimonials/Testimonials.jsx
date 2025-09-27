@@ -66,7 +66,7 @@ export const Testimonials = () => {
         My Experiences
       </h2>
       <p
-        className={`text-lg sm:text-4xl pb-5 md:pb-6 ${styles.headerParagraph}`}
+        className={`text-xl sm:text-4xl pb-5 md:pb-6 ${styles.headerParagraph}`}
         style={{ color: "var(--color-text)" }}
       >
         Click to check out what they thought of me :)
