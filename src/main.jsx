@@ -5,6 +5,8 @@ import "./index.css";
 
 import "@fontsource/montserrat";
 import "@fontsource-variable/rubik";
+import "@fontsource-variable/caveat";
+
 import { Theme } from "./components/Theme/Theme.jsx";
 
 createRoot(document.getElementById("root")).render(

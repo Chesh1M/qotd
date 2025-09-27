@@ -60,11 +60,17 @@ export const Testimonials = () => {
   return (
     <div className={`${styles.recommendationsContainer}`}>
       <h2
-        className={`text-3xl pb-5 md:pb-6 ${styles.sectionHeader}`}
+        className={`text-3xl pb-2 md:pb-3 ${styles.sectionHeader}`}
         style={{ color: "var(--color-text)" }}
       >
-        My Experiences!
+        My Experiences
       </h2>
+      <p
+        className={`text-4xl pb-5 md:pb-6 ${styles.headerParagraph}`}
+        style={{ color: "var(--color-text)" }}
+      >
+        Click to check out what they thought of me :)
+      </p>
       <div className={`${styles.lettersGrid}`}>
         {lettersData.map((letter, index) => (
           <div

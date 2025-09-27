@@ -131,12 +131,21 @@ export const Hero = () => {
           style={{ color: "var(--color-text)" }}
         >
           <span>
-            <span className={`text-3xl`} style={{ color: "var(--color-text)" }}>
+            <span
+              className={`text-4xl`}
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "Caveat Variable",
+              }}
+            >
               I'm a
             </span>
             <span
-              className={`text-3xl ml-2`}
-              style={{ color: "var(--color-accent)" }}
+              className={`text-4xl ml-2`}
+              style={{
+                color: "var(--color-accent)",
+                fontFamily: "Caveat Variable",
+              }}
             >
               {text}
             </span>
