@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Hero.module.css";
-import myImg from "../../assets/me-light.png";
+import myImgLight from "../../assets/me-light2.png";
+import myImgDark from "../../assets/me-dark2.png";
 import githubLight from "../../assets/github-light.svg";
 import githubDark from "../../assets/github-dark.svg";
 import linkedInLight from "../../assets/linkedin-light.svg";
@@ -14,6 +15,7 @@ export const Hero = () => {
   const { theme } = useTheme();
   const githubIcon = theme === "light" ? githubLight : githubDark;
   const linkedInIcon = theme === "light" ? linkedInLight : linkedInDark;
+  const myImg = theme === "light" ? myImgLight : myImgDark;
   const { navbarHeight } = useNavbarContext();
 
   const roles = [

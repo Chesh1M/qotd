@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import styles from "./Testimonials.module.css";
 import Modal from "react-modal";
 import { Document, Page, pdfjs } from "react-pdf";
+import { useTheme } from "../Theme/Theme";
 
 // Importing Assets (company logos)
-import anext_bank_logo from "../../assets/anext_logo.png";
+import anext_bank_logo from "../../assets/anext_logo.jpg";
 import great_eastern_logo from "../../assets/ge_logo.png";
 import nlb_logo from "../../assets/nlb_logo.jpg";
 
@@ -13,17 +14,17 @@ const lettersData = [
   {
     file: "/Recommendation_Letter_ANEXT_Bank.pdf",
     thumbnail: anext_bank_logo,
-    title: "ANEXT Bank - Letter of Recommendation",
+    title: "ANEXT Bank (Ant Group)",
   },
   {
     file: "/Recommendation_Letter_Great_Eastern.pdf",
     thumbnail: great_eastern_logo,
-    title: "Great Eastern - Letter of Recommendation",
+    title: "Great Eastern (OCBC Group)",
   },
   {
     file: "/Recommendation_Letter_NLB.pdf",
     thumbnail: nlb_logo,
-    title: "NLB - Letter of Recommendation",
+    title: "National Library Board",
   },
 ];
 
@@ -37,6 +38,8 @@ export const Testimonials = () => {
   const [modallsOpen, setModallsOpen] = useState(false);
   const [selectedPdf, setSelectedPdf] = useState(null);
   const [numPages, setNumPages] = useState(null);
+
+  const { theme } = useTheme();
 
   const openModal = (pdfUrl) => {
     console.log("Opening PDF:", pdfUrl);
@@ -57,12 +60,17 @@ export const Testimonials = () => {
 
   return (
     <div className={`${styles.recommendationsContainer}`}>
-      <h2 className={`text-3xl`}>Recommendation Letters</h2>
+      <h2
+        className={`text-3xl pb-5 md:pb-6 ${styles.sectionHeader}`}
+        style={{ color: "var(--color-text)" }}
+      >
+        My Experiences!
+      </h2>
       <div className={`${styles.lettersGrid}`}>
         {lettersData.map((letter, index) => (
           <div
             key={index}
-            className={`${styles.letterItem}`}
+            className={`${styles.letterItem} pb-6`}
             onClick={() => openModal(letter.file)}
           >
             {/* THUMBNAIL CODE START */}
@@ -71,7 +79,10 @@ export const Testimonials = () => {
               alt={`Recommendation Letter ${index + 1}`}
               className={`${styles.letterThumbnail}`}
             />
-            <p>{letter.title}</p>
+
+            <p className={`pt-2`} style={{ color: "var(--color-text)" }}>
+              {letter.title}
+            </p>
             {/* THUMBNAIL CODE END */}
           </div>
         ))}
