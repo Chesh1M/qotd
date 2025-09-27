@@ -42,7 +42,6 @@ export const Testimonials = () => {
   const { theme } = useTheme();
 
   const openModal = (pdfUrl) => {
-    console.log("Opening PDF:", pdfUrl);
     setSelectedPdf(pdfUrl);
     setModallsOpen(true);
   };

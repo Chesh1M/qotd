@@ -6,10 +6,19 @@ import githubLight from "../../assets/github-light.svg";
 import githubDark from "../../assets/github-dark.svg";
 import linkedInLight from "../../assets/linkedin-light.svg";
 import linkedInDark from "../../assets/linkedin-dark.svg";
-import resume from "../../assets/Resume_Chin_Ao_Wen.pdf";
 import { useTheme } from "../Theme/Theme";
 import { useNavbarContext } from "../Navbar/NavbarContext";
 import { Cursor } from "react-simple-typewriter";
+
+// PDF modal section (for resume)
+import resume from "/Resume_Chin_Ao_Wen.pdf";
+import Modal from "react-modal";
+import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+// react-pdf worker
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+// set modal accessibility root
+Modal.setAppElement("#root");
 
 export const Hero = () => {
   const { theme } = useTheme();
@@ -18,6 +27,32 @@ export const Hero = () => {
   const myImg = theme === "light" ? myImgLight : myImgDark;
   const { navbarHeight } = useNavbarContext();
 
+  // PDF modal handling
+  const [isOpen, setIsOpen] = useState(false);
+  const [numPages, setNumPages] = useState(null); // stores number of pages in the document
+  const [pageNumber, setPageNumber] = useState(1); // tracks current page user is on
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => {
+    setIsOpen(false);
+    setNumPages(null);
+  };
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+    setPageNumber(1);
+
+    // small delay to allow annotation layer DOM to be ready
+    setTimeout(() => {
+      const links = document.querySelectorAll(".annotationLayer a");
+      links.forEach((link) => {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      });
+    }, 0);
+  };
+
+  // Define typewriter words
   const roles = [
     "Mathematics Undergrad",
     "Data Analyst",
@@ -129,10 +164,55 @@ export const Hero = () => {
         </p>
 
         <div className={`flex justify-center mb-10`}>
-          <a href={resume} download>
-            <button className={styles.resumeBtn}>My Resume</button>
-          </a>
+          <button className={styles.resumeBtn} onClick={openModal}>
+            My Resume
+          </button>
         </div>
+
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={closeModal}
+          className={styles.pdfModal}
+          overlayClassName={styles.pdfModalOverlay}
+          contentLabel="Resume Modal"
+        >
+          <button onClick={closeModal} className={styles.closeButton}>
+            &times;
+          </button>
+          <div className={styles.pdfViewerContainer}>
+            <Document
+              file={resume}
+              onLoadSuccess={onDocumentLoadSuccess}
+              onLoadError={(err) => console.error("React-PDF failed:", err)}
+            >
+              <Page
+                pageNumber={pageNumber}
+                renderTextLayer={false}
+                renderAnnotationLayer={true} // keep links clickable
+                width={Math.min(window.innerWidth * 0.75, 800)}
+              />
+            </Document>
+
+            {/* Navigation buttons */}
+            <div className="flex justify-center gap-4 mt-4">
+              <button
+                onClick={() => setPageNumber((p) => Math.max(p - 1, 1))}
+                disabled={pageNumber <= 1}
+              >
+                ← Previous
+              </button>
+              <span>
+                Page {pageNumber} of {numPages}
+              </span>
+              <button
+                onClick={() => setPageNumber((p) => Math.min(p + 1, numPages))}
+                disabled={pageNumber >= numPages}
+              >
+                Next →
+              </button>
+            </div>
+          </div>
+        </Modal>
       </div>
     </section>
   );
