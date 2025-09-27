@@ -3,10 +3,7 @@ import styles from "./Testimonials.module.css";
 import Modal from "react-modal";
 import { Document, Page, pdfjs } from "react-pdf";
 
-// Importing Assets (the pdf files and logos)
-// import anext_bank_letter from "../../assets/Recommendation_Letter_ANEXT_Bank.pdf";
-// import great_eastern_letter from "../../assets/Recommendation_Letter_Great_Eastern.pdf";
-// import nlb_letter from "../../assets/Recommendation_Letter_NLB.pdf";
+// Importing Assets (company logos)
 import anext_bank_logo from "../../assets/anext_logo.png";
 import great_eastern_logo from "../../assets/ge_logo.png";
 import nlb_logo from "../../assets/nlb_logo.jpg";
@@ -31,7 +28,7 @@ const lettersData = [
 ];
 
 // Set up the worker for react-pdf
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 // Set the app element for react-modal to avoid accessibility issues
 Modal.setAppElement("#root");
@@ -42,6 +39,7 @@ export const Testimonials = () => {
   const [numPages, setNumPages] = useState(null);
 
   const openModal = (pdfUrl) => {
+    console.log("Opening PDF:", pdfUrl);
     setSelectedPdf(pdfUrl);
     setModallsOpen(true);
   };
@@ -67,12 +65,14 @@ export const Testimonials = () => {
             className={`${styles.letterItem}`}
             onClick={() => openModal(letter.file)}
           >
+            {/* THUMBNAIL CODE START */}
             <img
               src={letter.thumbnail}
               alt={`Recommendation Letter ${index + 1}`}
               className={`${styles.letterThumbnail}`}
             />
             <p>{letter.title}</p>
+            {/* THUMBNAIL CODE END */}
           </div>
         ))}
       </div>
@@ -96,9 +96,12 @@ export const Testimonials = () => {
 
         {selectedPdf && (
           <div className={`${styles.pdfViewerContainer}`}>
-            <Document file={selectedPdf} onLoadSuccess={onDocumentLoadSuccess}>
-              {/* Loop through all pages to display entire document */}
-              {Array.from(new Array(numPages), (el, index) => (
+            <Document
+              file={selectedPdf}
+              onLoadSuccess={onDocumentLoadSuccess}
+              onLoadError={(err) => console.error("React-PDF failed:", err)}
+            >
+              {[...Array(numPages)].map((_, index) => (
                 <Page
                   key={`page_${index + 1}`}
                   pageNumber={index + 1}
