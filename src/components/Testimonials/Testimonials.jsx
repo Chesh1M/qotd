@@ -81,7 +81,6 @@ export const Testimonials = () => {
             {/* THUMBNAIL CODE START */}
             <img
               src={letter.thumbnail}
-              alt={`Recommendation Letter ${index + 1}`}
               className={`${styles.letterThumbnail}`}
             />
 
